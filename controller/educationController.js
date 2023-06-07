@@ -8,21 +8,23 @@ exports.addEducation = async (req, res) => {
             college: req.body.college,
             degreee: req.body.degreee,
             field_Study: req.body.field_Study,
+            startDate: req.body.startDate,
+            endDate: req.body.endDate,
             location: req.body.location,
             greade: req.body.greade,
             isChecked: req.body.isChecked,
             description: req.body.description,
-            // collegeImage multer error
+            collegeImage: req.file.filename
         }).save();
 
         if (userSave) {
-            res.status(200).json({ message: "Education added Succesfully", result: userSave })
+            res.status(200).json({ status: 200, message: "Education added Succesfully", result: userSave })
 
         } else {
-            res.status(404).json({ message: "Data Not Found" })
+            res.status(404).json({ status: 404, message: "Data Not Found" })
         }
     } catch (error) {
-        res.status(500).json({ message: "Something went wrong" })
+        res.status(500).json({ status: 500, message: error.message })
     }
 }
 
@@ -48,12 +50,12 @@ exports.editEducation = async (req, res) => {
         )
 
         if (userData) {
-            res.status(200).json({ status: 200, msg: "edit Work Exprience Successfully", res: userData })
+            res.status(200).json({ status: 200, message: "Edit Education Successfully", res: userData })
         } else {
-            res.status(404).json({ status: 200, msg: "Data Not Found" })
+            res.status(404).json({ status: 404, message: "Data Not Found" })
         }
     } catch (error) {
-        res.status(401).json({ status: 401, msg: error })
+        res.status(500).json({ status: 500, message: error })
     }
 }
 
@@ -62,11 +64,11 @@ exports.deleteEducation = async (req, res) => {
     try {
         const userdata = await education_Model.findByIdAndDelete({ _id: req.body.userId })
         if (userdata) {
-            res.status(200).json({ messsage: "Education Deleted Succesfullty" })
+            res.status(200).json({ status: 200, messsage: "Education Deleted Succesfullty" })
         } else {
-            res.status(404).json({ messsage: "Data Not Found" })
+            res.status(404).json({ status: 404, messsage: "Data Not Found" })
         }
     } catch (error) {
-        res.status(500).json({ message: "Something went wrong" })
+        res.status(500).json({ status: 500, message: "Something went wrong" })
     }
 }

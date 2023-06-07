@@ -1,57 +1,57 @@
 const mongoose = require('mongoose');
 const data = mongoose.Schema({
-    userId:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"userModel"
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "userModel"
     },
 
-    title:{
-        type:String,
-        default:""
-    },
-    
-    employment_type:{
-        type:String,
-        default:''
+    title: {
+        type: String,
+        default: ""
     },
 
-    company_Name:{
-        type:String,
-        default:''
+    employment_type: {
+        type: String,
+        default: ''
     },
 
-    location:{
-        type:String,
-        default:''
+    company_Name: {
+        type: String,
+        default: ''
     },
 
-    startDate:{
-        type:Date,
-        default:''
-    },
-    endDate:{
-        type:Date,
-        default:''
+    location: {
+        type: String,
+        default: ''
     },
 
-    isChecked:{
-        type:Boolean,
-        default:false
+    startDate: {
+        type: Date,
+        default: null
+    },
+    endDate: {
+        type: Date,
+        default: null
     },
 
-    industry:{
-        type:String,
-        default:''
+    isChecked: {
+        type: Boolean,
+        default: false
     },
-    description:{
-        type:String,
-        default:''
+
+    industry: {
+        type: String,
+        default: ''
+    },
+    description: {
+        type: String,
+        default: ''
     }
-    
+
 },
-{
-    timestamps: true
-}
+    {
+        timestamps: true
+    }
 )
 
-module.exports = mongoose.model("Work_exprience",data)
+module.exports = mongoose.model("Work_exprience", data)

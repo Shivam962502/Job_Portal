@@ -17,14 +17,14 @@ exports.addExperience = async (req, res) => {
             userId: req.body.userId
         }).save()
         if (userSave) {
-            res.status(200).json({ message: "experience add Succesfully", result: userSave })
+            res.status(200).json({ status:200, message: "experience add Succesfully", result: userSave })
 
         } else {
-            res.status(404).json({ message: "Data Not Found", result: userSave })
+            res.status(404).json({status:404, message: "Data Not Found"})
         }
 
     } catch (error) {
-        res.status(500).json({ message: "Internal Server error" })
+        res.status(500).json({ message: error.message })
     }
 }
 
@@ -39,6 +39,8 @@ exports.editWorkExprience = async (req, res) => {
             location: req.body.location,
             isChecked: req.body.isChecked,
             industry: req.body.industry,
+            startDate: req.body.startDate,
+            endDate:req.body.endDate,
             description: req.body.description,
         }
 
@@ -49,13 +51,12 @@ exports.editWorkExprience = async (req, res) => {
         )
 
         if (userData) {
-            res.status(200).json({ status: 200, msg: "edit Work Exprience Successfully", res: userData })
+            res.status(200).json({ status: 200, message: "Work Exprience Edit Successfully", res: userData })
         } else {
-            res.status(404).json({ status: 200, msg: "No Data found" })
+            res.status(404).json({ status: 404, message: "No Data found" })
         }
     } catch (error) {
-        console.log(error.message)
-        res.status(401).json({ status: 401, msg: error })
+        res.status(500).json({ status: 500, message: error.message })
     }
 }
 
@@ -69,7 +70,7 @@ exports.deleteExperience = async (req, res) => {
             res.status(404).json({ status: 200, msg: "No Data found" })
         }
     } catch (error) {
-        res.status(500).json({ message: "Something went wrong" })
+        res.status(500).json({ message: error.message })
     }
 }
 

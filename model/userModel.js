@@ -5,14 +5,16 @@ const userData = new mongoose.Schema({
         default:''
     },
     firstName: {
-        type: String
+        type: String,
+        required:[true,"Please Enter Name"]
     },
     lastName: {
-        type: String
+        type: String,
+        default:""
     },
     mobileNumber: {
         type: Number,
-        default:""
+        default:null
     },
     email: {
         type: String,
@@ -25,7 +27,7 @@ const userData = new mongoose.Schema({
     },
     role: {
         type: String, 
-        default:"1"
+        default:"1"    
     },
     isActive: {
         type: String,

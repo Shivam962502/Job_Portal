@@ -9,7 +9,7 @@ const PORT = process.env.PORT
 
 app.use(cors())
 
-app.use('/upload', express.static(__dirname + '/upload'))
+app.use(express.static(__dirname + '/upload'))
 
 //database
 const db = require('./db/dataHase');
@@ -17,12 +17,9 @@ const db = require('./db/dataHase');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', async (req, res) => {
-    res.send('Hello Homepage!')
-})
-
 
 //Router
 app.use('/api',router)
+app.use('/employer',require('./router/empolyeRoutes'))
 
 app.listen(PORT, () => console.log(`Server is running on port http://localhost:${PORT}`));
